@@ -1,2 +1,2 @@
-# python-challenge.
+# python-challenge
 Demonstration of Homework
