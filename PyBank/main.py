@@ -3,44 +3,55 @@
 import os
 import csv
 
-Budget_Data_path = os.path.join("Budget_Data.csv")
+# may need to adjust path---------------------------------------
+Budget = os.path.join("Budget_Data.csv")
 
+Date = []
+Profits_Losses = []
 
-with open(Budget_Data_path, newline="") as csvfile:
-    csvreader = csv.reader(csvfile, delimiter=",")
+# open the csv file
+with open(Budget, newline="") as csvfile:
+        csvreader = csv.reader(csvfile, delimiter=",")
 
-    print(csvreader)
+# skip header in csv file-----------------------------
+csv_header = next(csvreader)
 
-    csv_header = next(csvreader)
-
-    for row in csvreader:
-        print(row)
+for row in csvreader:
         
+        # add months to list
+        Date.append(row[1])
 
-    date = int(row[1])
-    profits_losses = int(row[2])
+        # add profits & losses to list
+        Profits_Losses.append(row[2])
 
+        # calculate total months
+        TotalMonths = int(row[1]).sum()
 
-    print("Financial Analysis_____________________")
+        # calcutlate total profits & losses
+        TotalProfit = int(row[2]).sum()
 
-    months = 0
+        # calculate average profits per month
+        Average = TotalProfit / TotalMonths
 
-    for row in csv_reader
-    months += date
+        # find greatest increase 
+        MaxProfit = max(TotalProfit)
 
-    print("Total Number of Months: "+ months)
+        #find greatest decrease
+        MinProfit = min(TotalProfit)
 
-    Total_Profits += profits_losses
+        print("Financial Analysis-----------------------------------------")
+        print("Total Number of Months: "+ TotalMonths)
+        print("Total Profits: " + TotalProfit)
+        print("Average Change: " + Average)
+        print("Greatest Increase in Profits: " + MaxProfit)
+        print("Greatest Decrease in Profits: " + MinProfit)
 
-    print("Total Profits: " + Total_Profits)
-    
-    Average = Total_Profits / months
+# variable for the new output file
+requested_data = os.path.join("new_data.csv")
 
-    print("Average Change: " + Average)
+# open the output file
+with open(requested_data, "w", newline="") as datafile:
+        writer = csv.writer(datafile)
 
-    MaxProfit, MinProfit = [],[]
-    
-    for row in csv_reader:
-        MaxProfit.append
+        # how to write the new data in????????  (not a newly created list)
 
-#commit
