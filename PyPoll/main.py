@@ -14,37 +14,36 @@ Candidate = []
 with open(Election, newline="") as csvfile:
         csvreader = csv.reader(csvfile, delimiter=",")
 
-# skip header in csv file-----------------------------
-csv_header = next(csvreader)
+        # skip header in csv file-----------------------------
+        csv_header = next(csvreader)
 
-for row in csvreader:
-    # compile all Voter id's
-    Voter_ID.append(row[0])
+        votes = 0
 
-    # compile all counties
-    County.append(row[1])
+        for row in csvreader:
 
-    # compile all candidates
-    Candidate.append(row[2])
+                # add to candidate list
+                Candidate.append(row[2])
 
-    # add all candidates who recieved votes
-    CandidateList = Candidate.unique()
-
-    
-
-    # accumalate each candidates vote counts
-    CandidateVotes = CandidateList.value_counts()
+               
+                # add all candidates who recieved votes
+                def unique(Candidate):
+                        Candidate_List = Candidate
+                        print(Candidate_List)
 
     
 
+        # accumalate each candidates vote counts
+        # Candidate_Votes = Candidate_Votes.total
 
 
+        print(Candidate List)
+        
 
 
-    print("------------------------------------------")
-    print("Election Results")
-    print("------------------------------------------")
-    print("Total votes: " + CandidateVotes.sum())
-    print("------------------------------------------")
-    print("")
+        print("------------------------------------------")
+        print("Election Results")
+        print("------------------------------------------")
+        print("Total votes: " + "Candidate_Votes.sum()")
+        print("------------------------------------------")
+                
 
