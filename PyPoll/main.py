@@ -30,6 +30,8 @@ for row in csvreader:
     # add all candidates who recieved votes
     CandidateList = Candidate.unique()
 
+    
+
     # accumalate each candidates vote counts
     CandidateVotes = CandidateList.value_counts()
 
