@@ -42,7 +42,7 @@ for row in csvreader:
     print("------------------------------------------")
     print("Election Results")
     print("------------------------------------------")
-    print("Total votes: " + TotalVotes)
+    print("Total votes: " + CandidateVotes.sum())
     print("------------------------------------------")
     print("")
 
