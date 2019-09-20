@@ -8,25 +8,19 @@ Election_csv = os.path.join("Election_Data.csv")
 
 Voter_ID = []
 Candidate = []
-Indiv_Candidates =[]
-
 
 #Khan = []
 #Correy = []
 #Li = []
 #OTooley = []
 
-
-
 # open and read the csv file
 with open(Election_csv, newline="") as csvfile:
         csvreader = csv.reader(csvfile, delimiter=",")
         
         next(csvreader)
-
-        
+ 
         for row in csvreader:
-
 
                 # append Voter ID row
                 Voter_ID.append(row[0])
@@ -53,7 +47,7 @@ OTooley_Votes = (Candidate.count("O'Tooley")
 #Li_percent = (Li_Votes / total_votes)
 #Correy_perent = (Correy_Votes / total_votes)
 #OTooley_percent = (OTooley_Votes / total_votes)
-# '{:.3%}'.format
+# -----------code for formatting percentage ------ add in later  ----'{:.3%}'.format
 
 #khan_test = 4
 #li_test = 5
@@ -61,46 +55,43 @@ OTooley_Votes = (Candidate.count("O'Tooley")
 #OTooley_test = 7
 
 
-
-List_Candidates = ["Khan", 
-                "Li",
-                "Correy",
-                "OTooley"]
-
-
+# List of all candidates
+#Indiv_Candidates = ["Khan", 
+#                "Li",
+#                "Correy",
+#                "OTooley"]
 
 
-Khan = {
-        "Name": "Khan",
-        "votes": Khan_Votes,
-        #"Percentage": Khan_Votes}
 
-Li = {
-        "Name": "Li",
-        "Votes": Li_Votes,
-        #"Percentage": Li_Votes}
+# Dictionaries of candidates ----- to be used to help print data in summary table
+#Khan = {
+#        "Name": "Khan",
+#        "votes": Khan_Votes,
+#        "Percentage": Khan_Votes}
 
-Correy = {
-        "Name": "Correy",
-        "Votes": Correy_Votes,
-        #"Percentage": Correy_Votes}
+#Li = {
+#        "Name": "Li",
+#        "Votes": Li_Votes,
+#        "Percentage": Li_Votes}
 
-
-OTooley =  {
-        "Name": "O'Tooley",
-        "Votes": OTooley_Votes,
-        #"Percentage": OTooley_Votes}
+#Correy = {
+#        "Name": "Correy",
+#        "Votes": Correy_Votes,
+#        "Percentage": Correy_Votes}
 
 
-print(Li)
+#OTooley =  {
+#        "Name": "O'Tooley",
+#        "Votes": OTooley_Votes,
+#        #"Percentage": OTooley_Votes}
+
+# test points
+#print(Li)
 #print(Correy)
 #print(OTooley)
-print(Khan)
+#print(Khan)
+
 print(total_votes)
-
-
-
-
 
 print("------------------------------------------")
 print("Election Results")
@@ -108,8 +99,6 @@ print("------------------------------------------")
 #print("Total votes: " + str(total_votes))
 print("------------------------------------------")
 #print("Khan: " + str(khan_percent)
-
-
 
 
 
