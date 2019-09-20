@@ -3,11 +3,14 @@
 import os
 import csv
 
-# may need to adjust path---------------------------------------
+# set path for csv file
 Budget = os.path.join("Budget_Data.csv")
 
+# set lists to be used
 Date = []
-Profits_Losses = []
+Monthly_Profits_Losses = []
+Monthly_Change = []
+List_Profit_Loss = []
 
 # open the csv file
 with open(Budget, newline="") as csvfile:
@@ -16,50 +19,79 @@ with open(Budget, newline="") as csvfile:
         # skip header in csv file-----------------------------
         csv_header = next(csvreader)
 
+        # set list to 0
+        Profits_Losses = 0
+
         for row in csvreader:
         
                 # add months to list
                 Date.append(row[0])
 
                 # add profits & losses to list
-                Profits_Losses.append(row[1])
+                Profits_Losses += int(row[1])
 
-                # calculate total months
-                Total_Months = len(row[1])
+                # accumulate list of monthly profits/losses
+                List_Profit_Loss.append(row[1])
 
-                # change variable for Profits from string to int
-                Monthly_Profit = int(Profits_Losses)
                 
-                # calcutlate total profits & losses
-                Total_Profits = sum(Monthly_Profit)
 
-                # calculate average profits per month
-                Average = Total_Profits / Total_Months
+               # Monthly_difference = (x+1)-x
 
-                # find greatest increase 
-                MaxProfit = max(Monthly_Profit)
+# create dictionary to help determine monthly change in new column
+List_Budget_Data = {"Date",
+                "Monthly_Profits_Losses",
+                "Monthly_Change"}
 
-                # find greatest decrease
-                MinProfit = min(Monthly_Profit)
+# lists in dictionary
+Date_Dictionary = Date
 
-                # print out data --------------------Need to find months still
-                print("Financial Analysis-----------------------------------------")
-                print("Total Number of Months: "+ Total_Months)
-                print("Total Profits: " + Total_Profits)
-                print("Average Change: " + Average)
-                print("Greatest Increase in Profits: " + MaxProfit)
-                print("Greatest Decrease in Profits: " + MinProfit)
+Monthly_Profits_Losses = Profits_Losses
 
-        # variable for the new output file
-        requested_data = os.path.join("new_data.csv")
+Monthly_Change = 1   # temp filler for list
 
-        # open the output file
-        with open(requested_data, "w", newline="") as datafile:
-                writer = csv.writer(datafile)
+
+# calculate total months
+Total_Months = len(Date)
+
+# change variable for Profits from string to int
+Total_Profit = int(Profits_Losses)
+
+# calculate average profits per month
+
+
+# find greatest increase 
+
+
+# find greatest decrease
+
+
+
+
+#print(Profits_Losses)
+
+# print out data --------------------Need to find months still
+print("")
+print("Financial Analysis-----------------------------------------")
+print("")
+print("         Total Number of Months: " + str(Total_Months))
+print("         Total Profits: $" + str(Total_Profit))
+print("         Average Change: "                   )
+print("         Greatest Increase in Profits: "               )
+print("         Greatest Decrease in Profits: "              )
+print("")
+print("")
+
+print(List_Budget_Data)
+
+# variable for the new output file
+#requested_data = os.path.join("new_data.csv")
+
+# open the output file
+#with open(requested_data, "w", newline="") as datafile:
+        #writer = csv.writer(datafile)
                 
-                # write the csv file header
-                csvwriter.writerow(["Total Months", "Total Profits", 'Greatest Increase", "Greatest Decrease"])
+        # write the csv file header
+        #csvwriter.writerow(["Total Months", "Total Profits", 'Greatest Increase", "Greatest Decrease"])
 
-                # imput data into csvfile
-                csvwriter.writerow([Total_Months, Total_Months, MaxProfit, MinProfit])
-
+        # imput data into csvfile
+        #csvwriter.writerow([Total_Months, Total_Months, MaxProfit, MinProfit])
