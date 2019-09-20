@@ -47,21 +47,59 @@ Correy_Votes = (Candidate.count("Correy"))
 Li_Votes = (Candidate.count("Li"))
 
 # find total number of O'Tooley votes
-OTooley_Votes = (Candidate.count("O'Tooley"))
+OTooley_Votes = (Candidate.count("O'Tooley")
+
+#Khan_percent = (Khan_Votes / total_votes)
+#Li_percent = (Li_Votes / total_votes)
+#Correy_perent = (Correy_Votes / total_votes)
+#OTooley_percent = (OTooley_Votes / total_votes)
+# '{:.3%}'.format
+
+#khan_test = 4
+#li_test = 5
+#Correy_test = 6
+#OTooley_test = 7
+
+
+
+List_Candidates = ["Khan", 
+                "Li",
+                "Correy",
+                "OTooley"]
 
 
 
 
-print(Li_Votes)
-print(Correy_Votes)
-print(OTooley_Votes)
-print(Khan_Votes)
+Khan = {
+        "Name": "Khan",
+        "votes": Khan_Votes,
+        #"Percentage": Khan_Votes}
+
+Li = {
+        "Name": "Li",
+        "Votes": Li_Votes,
+        #"Percentage": Li_Votes}
+
+Correy = {
+        "Name": "Correy",
+        "Votes": Correy_Votes,
+        #"Percentage": Correy_Votes}
+
+
+OTooley =  {
+        "Name": "O'Tooley",
+        "Votes": OTooley_Votes,
+        #"Percentage": OTooley_Votes}
+
+
+print(Li)
+#print(Correy)
+#print(OTooley)
+print(Khan)
 print(total_votes)
 
-khan_percent = '{:.3%}'.format(Khan_Votes / total_votes)
-li_percent = '{:.3%}'.format(Li_Votes / total_votes)
-correy_perent ='{:.3%}'.format (Correy_Votes / total_votes)
-otooley_percent = '{:.3%}'.format(OTooley_Votes / total_votes)
+
+
 
 
 print("------------------------------------------")
@@ -70,12 +108,11 @@ print("------------------------------------------")
 #print("Total votes: " + str(total_votes))
 print("------------------------------------------")
 #print("Khan: " + str(khan_percent)
-#print(li_percent)
-#print(correy_perent)
-#print(otooley_percent)
 
-#print("Correy: " + float(Correy_Votes/total_votes) + "(" + Correy_Votes = ")") 
-#print("Li: " + float(Li_Votes/total_votes) + "(" + Li_Votes = ")") 
-# print("O'Tooley: " + float(OTooley_Votes/total_votes) + "(" + OTooley_Votes = ")")
-#print("Winner:" + str(Winner)
+
+
+
+
+
+#print("Winner:" +           )
 
