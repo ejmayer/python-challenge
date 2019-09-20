@@ -4,46 +4,78 @@ import os
 import csv
 
 # may need to adjust path---------------------------------------
-Election = os.path.join("Election_Data.csv")
+Election_csv = os.path.join("Election_Data.csv")
 
 Voter_ID = []
-County = []
 Candidate = []
+Indiv_Candidates =[]
 
-# open the csv file
-with open(Election, newline="") as csvfile:
+
+#Khan = []
+#Correy = []
+#Li = []
+#OTooley = []
+
+
+
+# open and read the csv file
+with open(Election_csv, newline="") as csvfile:
         csvreader = csv.reader(csvfile, delimiter=",")
+        
+        next(csvreader)
 
-        # skip header in csv file-----------------------------
-        csv_header = next(csvreader)
-
-        votes = 0
-
+        
         for row in csvreader:
 
-                # add to candidate list
+
+                # append Voter ID row
+                Voter_ID.append(row[0])
+
+                # append Candidate row
                 Candidate.append(row[2])
-
-               
-                # add all candidates who recieved votes
-                def unique(Candidate):
-                        Candidate_List = Candidate
-                        print(Candidate_List)
-
-    
-
-        # accumalate each candidates vote counts
-        # Candidate_Votes = Candidate_Votes.total
-
-
-        print(Candidate List)
-        
-
-
-        print("------------------------------------------")
-        print("Election Results")
-        print("------------------------------------------")
-        print("Total votes: " + "Candidate_Votes.sum()")
-        print("------------------------------------------")
                 
+                # find number of total votes cast
+                total_votes = len(Voter_ID)
+
+# find total number of Khan votes
+Khan_Votes = (Candidate.count("Khan"))
+
+# find total number of Correy votes
+Correy_Votes = (Candidate.count("Correy"))
+
+# find total number of Li votes
+Li_Votes = (Candidate.count("Li"))
+
+# find total number of O'Tooley votes
+OTooley_Votes = (Candidate.count("O'Tooley"))
+
+
+
+
+print(Li_Votes)
+print(Correy_Votes)
+print(OTooley_Votes)
+print(Khan_Votes)
+print(total_votes)
+
+khan_percent = '{:.3%}'.format(Khan_Votes / total_votes)
+li_percent = '{:.3%}'.format(Li_Votes / total_votes)
+correy_perent ='{:.3%}'.format (Correy_Votes / total_votes)
+otooley_percent = '{:.3%}'.format(OTooley_Votes / total_votes)
+
+
+print("------------------------------------------")
+print("Election Results")
+print("------------------------------------------")
+#print("Total votes: " + str(total_votes))
+print("------------------------------------------")
+#print("Khan: " + str(khan_percent)
+#print(li_percent)
+#print(correy_perent)
+#print(otooley_percent)
+
+#print("Correy: " + float(Correy_Votes/total_votes) + "(" + Correy_Votes = ")") 
+#print("Li: " + float(Li_Votes/total_votes) + "(" + Li_Votes = ")") 
+# print("O'Tooley: " + float(OTooley_Votes/total_votes) + "(" + OTooley_Votes = ")")
+#print("Winner:" + str(Winner)
 
