@@ -37,17 +37,14 @@ with open(Budget, newline="") as csvfile:
 
                # Monthly_difference = (x+1)-x
 
-# create dictionary to help determine monthly change in new column
-List_Budget_Data = {"Date",
-                "Monthly_Profits_Losses",
-                "Monthly_Change"}
 
 # lists in dictionary
-Date_Dictionary = Date
+#Date_Dictionary = Date
+#Monthly_Profits_Losses = Profits_Losses
+#Monthly_Change = 1   # temp filler for list
 
-Monthly_Profits_Losses = Profits_Losses
 
-Monthly_Change = 1   # temp filler for list
+
 
 
 # calculate total months
@@ -56,7 +53,30 @@ Total_Months = len(Date)
 # change variable for Profits from string to int
 Total_Profit = int(Profits_Losses)
 
-# calculate average profits per month
+Monthly_Change = [int(List_Profit_Loss[i + 1]) - int(List_Profit_Loss[i]) for i in range(len(List_Profit_Loss)-1)]
+
+print(Monthly_Change)
+
+average_change = '${:,.2f}'.format(sum(Monthly_Change)/(Total_Months - 1))
+
+print(average_change)
+
+
+# zip months and monthly change into one dictionary
+Budget_dict = dict(zip(Date, Monthly_Change))
+print(Budget_dict)
+#import operator
+
+# create dictionary to help determine monthly change in new column
+#List_Budget_Data = {Date : Monthly_Change}
+#Greatest_increase = max(Budget_dict.values(), key=operator.itemgetter(1))[0]
+
+Greatest_increase = max(Budget_dict.items(), key = lambda x: x[0])
+
+
+#Greatest_increase = max(dict.items(), key=operator.itemgetter(1))[0]
+
+print(Greatest_increase)
 
 
 # find greatest increase 
@@ -75,13 +95,13 @@ print("Financial Analysis-----------------------------------------")
 print("")
 print("         Total Number of Months: " + str(Total_Months))
 print("         Total Profits: $" + str(Total_Profit))
-print("         Average Change: "                   )
+print("         Average Change: " + str(average_change))
 print("         Greatest Increase in Profits: "               )
 print("         Greatest Decrease in Profits: "              )
 print("")
 print("")
 
-print(List_Budget_Data)
+#print(List_Budget_Data)
 
 # variable for the new output file
 #requested_data = os.path.join("new_data.csv")
