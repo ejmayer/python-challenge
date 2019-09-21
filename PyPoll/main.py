@@ -4,15 +4,10 @@ import os
 import csv
 
 # may need to adjust path---------------------------------------
-Election_csv = os.path.join("Election_Data.csv")
+Election_csv = os.path.join("election_data.csv")
 
 Voter_ID = []
 Candidate = []
-
-#Khan = []
-#Correy = []
-#Li = []
-#OTooley = []
 
 # open and read the csv file
 with open(Election_csv, newline="") as csvfile:
@@ -31,77 +26,78 @@ with open(Election_csv, newline="") as csvfile:
                 # find number of total votes cast
                 total_votes = len(Voter_ID)
 
-# find total number of Khan votes
-Khan_Votes = (Candidate.count("Khan"))
+# find and create new list of candidates recieving votes
+new_set = set(Candidate)
+find_unique_candidates = list(new_set)
+
+# retrieve names and create variables to move forward with
+from operator import itemgetter
+candidate_one, candidate_two, candidate_three, candidate_four = itemgetter(0,1,2,3)(find_unique_candidates)
+
+ # find total number of Khan votes
+votes_one = (Candidate.count(candidate_one))
 
 # find total number of Correy votes
-Correy_Votes = (Candidate.count("Correy"))
+votes_two = (Candidate.count(candidate_two))
 
 # find total number of Li votes
-Li_Votes = (Candidate.count("Li"))
+votes_three = (Candidate.count(candidate_three))
 
 # find total number of O'Tooley votes
-OTooley_Votes = (Candidate.count("O'Tooley")
+votes_four = (Candidate.count(candidate_four))
 
-#Khan_percent = (Khan_Votes / total_votes)
-#Li_percent = (Li_Votes / total_votes)
-#Correy_perent = (Correy_Votes / total_votes)
-#OTooley_percent = (OTooley_Votes / total_votes)
-# -----------code for formatting percentage ------ add in later  ----'{:.3%}'.format
+# find percentage of votes and properly format
+Candidate_one_percent = '{:.3%}'.format(votes_one / total_votes)
+Candidate_two_percent = '{:.3%}'.format(votes_two / total_votes)
+Candidate_three_perent = '{:.3%}'.format(votes_three / total_votes)
+Candidate_four_percent = '{:.3%}'.format(votes_four / total_votes)
 
-#khan_test = 4
-#li_test = 5
-#Correy_test = 6
-#OTooley_test = 7
+# list of all candidates
+Indiv_Candidates = [
+                candidate_one,
+                candidate_two,
+                candidate_three,
+                candidate_four]
 
+# dictionaries of candidates - to be used to help print summary data
+Dict_One = {
+        "Name": candidate_one,        
+        "Percentage": Candidate_one_percent,
+        "Votes": votes_one}
 
-# List of all candidates
-#Indiv_Candidates = ["Khan", 
-#                "Li",
-#                "Correy",
-#                "OTooley"]
+Dict_two = {
+        "Name": candidate_two,
+        "Percentage": Candidate_two_percent,
+        "Votes": votes_two}
 
+Dict_three = {
+        "Name": candidate_three,
+        "Percentage": Candidate_three_perent,
+        "Votes": votes_three}
 
+Dict_four = {
+        "Name": candidate_four,
+        "Percentage": Candidate_four_percent,
+        "Votes": votes_four}
 
-# Dictionaries of candidates ----- to be used to help print data in summary table
-#Khan = {
-#        "Name": "Khan",
-#        "votes": Khan_Votes,
-#        "Percentage": Khan_Votes}
+# find largest vote-getter using dictionary and finding max item value and returning candidate
+import operator
+Winner_dict = {candidate_one : votes_one, candidate_two : votes_two, candidate_three : votes_three, candidate_four : votes_four}
+winner = max(Winner_dict.items(), key=operator.itemgetter(1))[0]
 
-#Li = {
-#        "Name": "Li",
-#        "Votes": Li_Votes,
-#        "Percentage": Li_Votes}
-
-#Correy = {
-#        "Name": "Correy",
-#        "Votes": Correy_Votes,
-#        "Percentage": Correy_Votes}
-
-
-#OTooley =  {
-#        "Name": "O'Tooley",
-#        "Votes": OTooley_Votes,
-#        #"Percentage": OTooley_Votes}
-
-# test points
-#print(Li)
-#print(Correy)
-#print(OTooley)
-#print(Khan)
-
-print(total_votes)
-
+# print results
+print("")
 print("------------------------------------------")
 print("Election Results")
 print("------------------------------------------")
-#print("Total votes: " + str(total_votes))
+print("Total votes: " + str(total_votes))
 print("------------------------------------------")
-#print("Khan: " + str(khan_percent)
-
-
-
-
-#print("Winner:" +           )
-
+#print(Kahn("Name")
+print(Dict_One)
+print(Dict_two)
+print(Dict_three)
+print(Dict_four)
+print("------------------------------------------")
+print("Winner: " + winner)
+print("------------------------------------------")
+print("")
