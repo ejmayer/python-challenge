@@ -4,13 +4,13 @@ import os
 import csv
 
 # may need to adjust path---------------------------------------
-Election_csv = os.path.join("election_data.csv")
+election_csv = os.path.join("election_data.csv")
 
 Voter_ID = []
 Candidate = []
 
 # open and read the csv file
-with open(Election_csv, newline="") as csvfile:
+with open(election_csv, newline="") as csvfile:
         csvreader = csv.reader(csvfile, delimiter=",")
         
         next(csvreader)
@@ -101,3 +101,30 @@ print("------------------------------------------")
 print("Winner: " + winner)
 print("------------------------------------------")
 print("")
+
+# import using dictwriter in cvs module
+import csv
+csv_columns = ['Name', 'Percentage', 'Votes']
+dict_data = [
+        {"Name": candidate_one,        
+        "Percentage": Candidate_one_percent,
+        "Votes": votes_one},
+        {"Name": candidate_two,
+        "Percentage": Candidate_two_percent,
+        "Votes": votes_two},
+        {"Name": candidate_three,
+        "Percentage": Candidate_three_perent,
+        "Votes": votes_three},
+        {"Name": candidate_four,
+        "Percentage": Candidate_four_percent,
+        "Votes": votes_four}]
+csv_file = "election_results.csv"
+try:
+        with open(csv_file, 'w') as csvfile:
+                writer = csv.DictWriter(csvfile, fieldnames=csv_columns)
+                writer.writeheader()
+                for data in dict_data:
+                        writer.writerow(data)
+
+except IOError:
+        print("I/O error")
