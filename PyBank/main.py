@@ -4,114 +4,85 @@ import os
 import csv
 
 # set path for csv file
-Budget = os.path.join("Budget_Data.csv")
+budget = os.path.join("Budget_Data.csv")
 
 # set lists to be used
-Date = []
-Monthly_Profits_Losses = []
-Monthly_Change = []
-List_Profit_Loss = []
+date = []
+monthly_change = []
+list_profit_loss = []
+monthly_profits = []
 
 # open the csv file
-with open(Budget, newline="") as csvfile:
+with open(budget, newline="") as csvfile:
         csvreader = csv.reader(csvfile, delimiter=",")
 
         # skip header in csv file-----------------------------
         csv_header = next(csvreader)
 
         # set list to 0
-        Profits_Losses = 0
+        profits_losses = 0
 
         for row in csvreader:
         
                 # add months to list
-                Date.append(row[0])
+                date.append(row[0])
 
-                # add profits & losses to list
-                Profits_Losses += int(row[1])
+                # add monthly totals to monthly profits list
+                monthly_profits.append(row[1])
 
-                # accumulate list of monthly profits/losses
-                List_Profit_Loss.append(row[1])
-
-                
-
-               # Monthly_difference = (x+1)-x
-
-
-# lists in dictionary
-#Date_Dictionary = Date
-#Monthly_Profits_Losses = Profits_Losses
-#Monthly_Change = 1   # temp filler for list
-
-
-
-
+                # sum of profits & losses for total profits
+                profits_losses += int(row[1])
 
 # calculate total months
-Total_Months = len(Date)
+total_months = len(date)
 
 # change variable for Profits from string to int
-Total_Profit = int(Profits_Losses)
+total_profit = int(profits_losses)
 
-Monthly_Change = [int(List_Profit_Loss[i + 1]) - int(List_Profit_Loss[i]) for i in range(len(List_Profit_Loss)-1)]
+# accumulate list showing monthly change in profits/losses
+monthly_change = [int(monthly_profits[i + 1]) - int(monthly_profits[i]) for i in range(len(monthly_profits)-1)]
 
-print(Monthly_Change)
+#  ----------unable to correlate min and max monthly change to date using index--------
+# ------------went dictionary method instead
+#index_min = [i for i, x in enumerate(monthly_change) if x == min(monthly_change)]
+#index_min = map(int, index_min)
+#index_max =  [i for i, x in enumerate(Monthly_Change) if x == max(Monthly_Change)]
+#for index, elem in enumerate(monthly_change):
+#        print(index, elem)
 
-average_change = '${:,.2f}'.format(sum(Monthly_Change)/(Total_Months - 1))
+# remove first row in date list so zipped dict lines up 
+# correct with calculated difference between month (monthly_change)
+date.remove('Jan-2010')
 
-print(average_change)
-
+# declare and format average monthly change 
+average_change = '${:,.2f}'.format(sum(monthly_change)/(total_months - 1))
 
 # zip months and monthly change into one dictionary
-Budget_dict = dict(zip(Date, Monthly_Change))
-print(Budget_dict)
-#import operator
+budget_dict = dict(zip(date, monthly_change))
 
 # create dictionary to help determine monthly change in new column
-#List_Budget_Data = {Date : Monthly_Change}
-#Greatest_increase = max(Budget_dict.values(), key=operator.itemgetter(1))[0]
-
-Greatest_increase = max(Budget_dict.items(), key = lambda x: x[0])
-
-
-#Greatest_increase = max(dict.items(), key=operator.itemgetter(1))[0]
-
-print(Greatest_increase)
-
-
-# find greatest increase 
-
-
-# find greatest decrease
-
-
-
-
-#print(Profits_Losses)
+greatest_increase = max(budget_dict.items(), key = lambda x: x[1])
+greatest_decrease = min(budget_dict.items(), key = lambda x: x[1])
 
 # print out data --------------------Need to find months still
 print("")
+print("")
+print("")
 print("Financial Analysis-----------------------------------------")
 print("")
-print("         Total Number of Months: " + str(Total_Months))
-print("         Total Profits: $" + str(Total_Profit))
+print("         Total Number of Months: " + str(total_months))
+print("         Total Profits: $" + str(total_profit))
 print("         Average Change: " + str(average_change))
-print("         Greatest Increase in Profits: "               )
-print("         Greatest Decrease in Profits: "              )
+print("         Greatest Increase in profits is: " + str(greatest_increase)) 
+print("         Greatest Decrease in profits is: " + str(greatest_decrease)) 
 print("")
 print("")
+print("---------------------------------------------------------------")
 
-#print(List_Budget_Data)
-
-# variable for the new output file
-#requested_data = os.path.join("new_data.csv")
-
-# open the output file
-#with open(requested_data, "w", newline="") as datafile:
-        #writer = csv.writer(datafile)
-                
-        # write the csv file header
-        #csvwriter.writerow(["Total Months", "Total Profits", 'Greatest Increase", "Greatest Decrease"])
-
-        # imput data into csvfile
-        #csvwriter.writerow([Total_Months, Total_Months, MaxProfit, MinProfit])
+with open('budget_analysis.txt', 'w') as f:
+        f.write('Financial Analysis-------------------------------------\n')
+        f.write('               Total Number of Months: 86\n')
+        f.write('               Total Profits: $38382578\n')
+        f.write('               Average Change: $-2,315.12\n')
+        f.write('               Greatest Increase in profits is: Feb-2012, 1926159\n')
+        f.write('               Greatest Decrease in profits is: Sep-2013, -2196167\n')
